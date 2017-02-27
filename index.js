@@ -6,7 +6,6 @@ const { Twitter } = require('twitter-node-client')
 const config = JSON.parse(fs.readFileSync('data/twitter_config', 'utf8'))
 const twitter = new Twitter(config)
 
-
 twitter.getUserTimeline({ screen_name: 'xCaru', count: '10'}, error, success);
 */
 
@@ -14,7 +13,6 @@ const express = require('express')
 const { Strategy } = require('passport-twitter')
 const passport = require('passport')
 const { twitterAuth } = require('./data/auth')
-
 
 const { consumerKey, consumerSecret, callbackURL } = twitterAuth
 
@@ -44,7 +42,8 @@ app.use(require('express-session')({ secret: 'keyboard lizerd', resave: true, sa
 app.use(passport.initialize())
 app.use(passport.session())
 
-app.get('/', (req, res) => {
+app.get('/home', (req, res) => {
+  console.log(res.user)
   res.render('home', { user: req.user })
 })
 
@@ -54,9 +53,9 @@ app.get('/login', (req, res) => {
 
 app.get('/login/twitter', passport.authenticate('twitter'))
 
-app.get('/login/twitter/return', passport.authenticate('twitter', {failureRedirect: '/login'}),
+app.get('/', passport.authenticate('twitter', {failureRedirect: '/login'}),
   (req, res) => {
-    res.redirect('/')
+    res.redirect('/home')
   }
 )
 
