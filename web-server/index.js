@@ -43,7 +43,6 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 app.get('/home', (req, res) => {
-  console.log(res.user)
   res.render('home', { user: req.user })
 })
 
