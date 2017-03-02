@@ -1,0 +1,6 @@
+{
+  "private": true,
+  "dependencies": {
+    "pomelo": "^2.2.5"
+  }
+}
