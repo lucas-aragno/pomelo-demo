@@ -1,4 +1,4 @@
-game-server/
+pomelo-app/
 web-server/node_modules/
 web-server/data/twitter_config
 web-server/data/auth.js
