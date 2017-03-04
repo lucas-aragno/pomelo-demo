@@ -7,11 +7,14 @@ app.set('name', 'pomelo-demo')
 app.configure('production|development', 'connector', () => {
   app.set('connectorConfig',
     {
-      connector: pomelo.connectors.hybridconnector,
-      heartbeat: 3,
-      useDict: true,
-      useProtobuf: true
+      connector: pomelo.connectors.sioconnector,
+      transports: ['websocket', 'polling'],
+      heartbeats: true,
+      closeTimeout: 60 * 1000,
+      heartbeatTimeout: 60 * 1000,
+      heartbeatInterval: 25 * 1000
     })
+  app.filter(pomelo.timeout())
 })
 
 app.start()

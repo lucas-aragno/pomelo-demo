@@ -1,6 +1,7 @@
 {
   "private": true,
   "dependencies": {
+    "crc": "^3.4.4",
     "pomelo": "^2.2.5"
   }
 }
